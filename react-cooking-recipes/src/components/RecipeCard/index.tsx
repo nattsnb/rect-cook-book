@@ -1,4 +1,3 @@
-import { FunctionComponent } from "react";
 import { Recipe } from "../../../shared/types/Recipe.ts";
 import {
   List,
@@ -7,6 +6,10 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import {
+  StyledImageContainer,
+  StyledRecipeContainer,
+} from "./RecipeCard.styled.tsx";
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -14,10 +17,8 @@ interface RecipeCardProps {
 
 export function RecipeCard({ recipe }: RecipeCardProps) {
   return (
-    <div>
-      <div>
-        <p>picture placeholder</p>
-      </div>
+    <StyledRecipeContainer>
+      <StyledImageContainer />
       <div>
         <h2>{recipe.title}</h2>
         <h5>{recipe.allergens}</h5>
@@ -34,6 +35,6 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
           </List>
         </div>
       </div>
-    </div>
+    </StyledRecipeContainer>
   );
 }
