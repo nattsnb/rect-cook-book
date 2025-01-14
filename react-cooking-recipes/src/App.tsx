@@ -1,7 +1,10 @@
 import { Recipe } from "../shared/types/Recipe.ts";
 import { RecipeCard } from "./components/RecipeCard";
 import theme from "../shared/utils/theme.ts";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, Typography, useMediaQuery } from "@mui/material";
+import { RecipesBar } from "./components/RecipesBar";
+import { StyledAppContainer, StyledTitle } from "./App.styled.tsx";
+import "./poppins.css";
 
 function App() {
   const recipe: Recipe = {
@@ -29,9 +32,23 @@ function App() {
     .filter((ingredient) => ingredient.isAllergen)
     .map((ingredient) => ingredient.name);
 
+  const isViewportSmallerThanMd = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <ThemeProvider theme={theme}>
-      <RecipeCard recipe={recipe} />
+      <StyledTitle>
+        <Typography variant="pageTittle">The Cook Book</Typography>
+      </StyledTitle>
+      {isViewportSmallerThanMd ? (
+        <StyledAppContainer>
+          <RecipeCard recipe={recipe} />
+        </StyledAppContainer>
+      ) : (
+        <StyledAppContainer>
+          <RecipeCard recipe={recipe} />
+          <RecipesBar />
+        </StyledAppContainer>
+      )}
     </ThemeProvider>
   );
 }

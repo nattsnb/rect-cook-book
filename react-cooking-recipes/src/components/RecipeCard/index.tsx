@@ -5,10 +5,12 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Typography,
 } from "@mui/material";
 import {
   StyledImageContainer,
-  StyledRecipeContainer,
+  StyledInfoContainer,
+  StyledRecipeCardContainer,
 } from "./RecipeCard.styled.tsx";
 
 interface RecipeCardProps {
@@ -17,11 +19,13 @@ interface RecipeCardProps {
 
 export function RecipeCard({ recipe }: RecipeCardProps) {
   return (
-    <StyledRecipeContainer>
+    <StyledRecipeCardContainer>
       <StyledImageContainer />
-      <div>
-        <h2>{recipe.title}</h2>
-        <h5>{recipe.allergens}</h5>
+      <StyledInfoContainer>
+        <Typography variant="recipeTittle">{recipe.title}</Typography>
+        <Typography variant="allergens">
+          allergens: {recipe.allergens}
+        </Typography>
         <div>
           <List>
             {recipe.cookingSteps.map((value, index) => (
@@ -34,7 +38,7 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
             ))}
           </List>
         </div>
-      </div>
-    </StyledRecipeContainer>
+      </StyledInfoContainer>
+    </StyledRecipeCardContainer>
   );
 }

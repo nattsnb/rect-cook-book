@@ -3,9 +3,9 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      light: "#d5f2e3",
-      main: "#8ecfb3",
-      dark: "#5d9d83",
+      light: "#8f5a3c",
+      main: "#4b2e1c",
+      dark: "#2c1b14",
       contrastText: "#ffffff",
     },
     secondary: {
@@ -25,8 +25,73 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Arial, sans-serif",
-    fontSize: 16,
+    pageTittle: {
+      fontSize: "48px",
+      lineHeight: 1.5,
+      fontWeight: 600,
+      fontFamily: `"Poppins", sans-serif`,
+      color: "#2c1b14",
+      "@media (max-width: 768px)": {
+        fontSize: "32px",
+      },
+    },
+    recipeTittle: {
+      fontSize: "32px",
+      lineHeight: 1.5,
+      fontWeight: 600,
+      fontFamily: `"Poppins", sans-serif`,
+      color: "#2c1b14",
+      "@media (max-width:  480px)": {
+        fontSize: "24px",
+      },
+    },
+    allergens: {
+      fontSize: "14px",
+      lineHeight: "30px",
+      fontWeight: 400,
+      fontFamily: `"Poppins", sans-serif`,
+      color: "#ff0000",
+      "@media (max-width:  480px)": {
+        fontSize: "12px",
+      },
+    },
+    recipeSteps: {
+      fontSize: "20px",
+      lineHeight: "30px",
+      fontWeight: 600,
+      fontFamily: `"Poppins", sans-serif`,
+      color: "#2c1b14",
+      "@media (max-width: 480px)": {
+        fontSize: "16px",
+      },
+    },
+    stepsCounter: {
+      fontSize: "20px",
+      lineHeight: "30px",
+      fontWeight: 600,
+      fontFamily: `"Poppins", sans-serif`,
+      color: "#2c1b14",
+      "@media (max-width:  480px)": {
+        fontSize: "16px",
+      },
+    },
+    fontFamily: `"Poppins", sans-serif`,
+  },
+  components: {
+    MuiListItemText: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          ...theme.typography.recipeSteps,
+        }),
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          ...theme.typography.stepsCounter,
+        }),
+      },
+    },
   },
 });
 
