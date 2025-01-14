@@ -5,8 +5,11 @@ import { ThemeProvider, Typography, useMediaQuery } from "@mui/material";
 import { RecipesBar } from "./components/RecipesBar";
 import { StyledAppContainer, StyledTitle } from "./App.styled.tsx";
 import "./poppins.css";
+import { useState } from "react";
+import { NewRecipeForm } from "./components/NewRecipeForm";
 
 function App() {
+  const [activeRecipe, setActiveRecipe] = useState(null);
   const recipe: Recipe = {
     title: "Food",
     ingredients: [
@@ -41,11 +44,11 @@ function App() {
       </StyledTitle>
       {isViewportSmallerThanMd ? (
         <StyledAppContainer>
-          <RecipeCard recipe={recipe} />
+          {activeRecipe ? <RecipeCard recipe={recipe} /> : <NewRecipeForm />}
         </StyledAppContainer>
       ) : (
         <StyledAppContainer>
-          <RecipeCard recipe={recipe} />
+          {activeRecipe ? <RecipeCard recipe={recipe} /> : <NewRecipeForm />}
           <RecipesBar />
         </StyledAppContainer>
       )}

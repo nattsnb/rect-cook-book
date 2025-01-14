@@ -85,6 +85,26 @@ const theme = createTheme({
         fontSize: "16px",
       },
     },
+    formSection: {
+      marginTop: "30px",
+      fontSize: "20px",
+      lineHeight: "30px",
+      fontWeight: 600,
+      fontFamily: `"Poppins", sans-serif`,
+      color: "#2c1b14",
+      "@media (max-width:  480px)": {
+        fontSize: "22px",
+      },
+    },
+    formErrorMessage: {
+      fontSize: "12px",
+      lineHeight: "16px",
+      fontFamily: `"Poppins", sans-serif`,
+      color: "#2c1b14",
+      "@media (max-width:  480px)": {
+        fontSize: "10px",
+      },
+    },
     fontFamily: `"Poppins", sans-serif`,
   },
   components: {
@@ -101,6 +121,27 @@ const theme = createTheme({
           ...theme.typography.stepsCounter,
         }),
       },
+    },
+    MuiDivider: {
+      variants: [
+        {
+          props: { variant: "customDashed" }, // Wariant z przerywaną linią
+          style: {
+            borderColor: "#8f5a3c", // Czekoladowy kolor
+            borderWidth: "1px",
+            borderStyle: "solid",
+            marginBottom: "16px",
+          },
+        },
+        {
+          props: { variant: "customThick" }, // Wariant z grubą linią
+          style: {
+            borderColor: "#2c1b14", // Bardzo ciemny czekoladowy kolor
+            borderWidth: "4px",
+            borderStyle: "solid",
+          },
+        },
+      ],
     },
   },
 });
