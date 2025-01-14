@@ -35,6 +35,16 @@ const theme = createTheme({
         fontSize: "32px",
       },
     },
+    recipesBarTittle: {
+      fontSize: "24px",
+      lineHeight: 1.5,
+      fontWeight: 600,
+      fontFamily: `"Poppins", sans-serif`,
+      color: "#2c1b14",
+      "@media (max-width: 768px)": {
+        fontSize: "16px",
+      },
+    },
     recipeTittle: {
       fontSize: "32px",
       lineHeight: 1.5,

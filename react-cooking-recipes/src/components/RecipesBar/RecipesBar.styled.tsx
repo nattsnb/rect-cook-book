@@ -9,3 +9,8 @@ export const StyledRecipesBarContainer = styled("div")`
     ${({ theme }) => theme.palette.secondary.dark};
   background-color: ${({ theme }) => theme.palette.secondary.main};
 `;
+
+export const StyledRecipesBarTittle = styled("div")`
+  display: flex;
+  justify-content: center;
+`;
