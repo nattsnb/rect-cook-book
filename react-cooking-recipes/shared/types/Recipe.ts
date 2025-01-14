@@ -1,9 +1,9 @@
-import {Ingredient} from "./Ingredient";
+import { Ingredient } from "./Ingredient";
 
 export interface Recipe {
-    title: string;
-    ingredients: Ingredient[];
-    allergens: string[];
-    cookingSteps: string[];
-    photoURL: string;
+  title: string;
+  ingredients: Ingredient[];
+  allergens: string[];
+  cookingSteps: string[];
+  photoURL: string;
 }
