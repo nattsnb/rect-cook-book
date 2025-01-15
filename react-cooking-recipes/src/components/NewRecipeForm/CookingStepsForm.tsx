@@ -19,8 +19,14 @@ export function CookingStepsForm() {
     setCookingSteps([...cookingSteps, newStep]);
   };
 
-  const onClickDeleteButton = (id) => {
-    setCookingSteps(cookingSteps.filter((step) => step.id !== id));
+  const onClickDeleteStep = (id) => {
+    const updatedSteps = cookingSteps
+      .filter((step) => step.id !== id)
+      .map((step, index) => ({
+        ...step,
+        id: index + 1,
+      }));
+    setCookingSteps(updatedSteps);
   };
 
   return (
@@ -35,7 +41,7 @@ export function CookingStepsForm() {
           ></TextField>
           <IconButton
             onClick={() => {
-              onClickDeleteButton(step.id);
+              onClickDeleteStep(step.id);
             }}
           >
             <DeleteOutlineIcon />

@@ -14,12 +14,14 @@ function App() {
     title: "Food",
     ingredients: [
       {
+        id: 1,
         amount: 4,
         unit: "each",
         name: "egg",
         isAllergen: true,
       },
       {
+        id: 2,
         amount: 0.5,
         unit: "kg",
         name: "flour",
