@@ -4,6 +4,6 @@ export interface Recipe {
   title: string;
   ingredients: Ingredient[];
   allergens: string[];
-  cookingSteps: string[];
+  cookingSteps: { id: number; step: string }[];
   photoURL: string;
 }

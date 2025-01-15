@@ -27,7 +27,11 @@ function App() {
       },
     ],
     allergens: [],
-    cookingSteps: ["preheat", "stir", "fry"],
+    cookingSteps: [
+      { id: 1, step: "preheat" },
+      { id: 2, step: "stir" },
+      { id: 3, step: "fry" },
+    ],
     photoURL: "https://picsum.photos/600/900",
   };
 
