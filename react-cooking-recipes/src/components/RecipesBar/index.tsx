@@ -22,13 +22,15 @@ interface RecipesBarProps {
   isEditModeOn: boolean;
   activeRecipe: Recipe | null;
   deleteAllRecipes: () => void;
+  handleAddNewRecipe: () => void;
 }
 
 export function RecipesBar({
   recipes,
-  setActiveRecipe,
+  handleSetActiveRecipe,
   deleteRecipe,
   deleteAllRecipes,
+  handleAddNewRecipe,
 }: RecipesBarProps) {
   return (
     <StyledRecipesBarContainer>
@@ -37,13 +39,13 @@ export function RecipesBar({
       </StyledRecipesBarTittle>
       <Divider />
       <List>
-        <Button variant="contained">
+        <Button variant="contained" onClick={handleAddNewRecipe}>
           <AddIcon />
           Add recipe
         </Button>
         {recipes ? (
           recipes.map((value, index) => (
-            <ListItem key={index}>
+            <ListItem key={index} onClick={() => handleSetActiveRecipe(value)}>
               <ListItemButton>
                 <ListItemText>{value.title}</ListItemText>
               </ListItemButton>

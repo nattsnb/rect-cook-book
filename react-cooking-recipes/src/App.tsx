@@ -52,6 +52,16 @@ function App() {
     setRecipes([]);
   };
 
+  const handleSetActiveRecipe = (recipe: Recipe | null) => {
+    setIsEditModeOn(false);
+    setActiveRecipe(recipe);
+  };
+
+  const handleAddNewRecipe = () => {
+    setActiveRecipe(null);
+    setIsEditModeOn(true);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <StyledTitle>
@@ -84,9 +94,10 @@ function App() {
           )}
           <RecipesBar
             recipes={recipes}
-            setActiveRecipe={setActiveRecipe}
+            handleSetActiveRecipe={handleSetActiveRecipe}
             deleteRecipe={deleteRecipe}
             deleteAllRecipes={deleteAllRecipes}
+            handleAddNewRecipe={handleAddNewRecipe}
           />
         </StyledAppContainer>
       )}

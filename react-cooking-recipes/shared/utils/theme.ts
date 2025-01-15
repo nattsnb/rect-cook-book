@@ -55,6 +55,16 @@ const theme = createTheme({
         fontSize: "24px",
       },
     },
+    ingredientsTittle: {
+      fontSize: "24px",
+      lineHeight: 1.5,
+      fontWeight: 600,
+      fontFamily: `"Poppins", sans-serif`,
+      color: "#2c1b14",
+      "@media (max-width:  480px)": {
+        fontSize: "18px",
+      },
+    },
     allergens: {
       fontSize: "14px",
       lineHeight: "30px",
