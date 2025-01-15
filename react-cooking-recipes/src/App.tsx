@@ -5,39 +5,36 @@ import { ThemeProvider, Typography, useMediaQuery } from "@mui/material";
 import { RecipesBar } from "./components/RecipesBar";
 import { StyledAppContainer, StyledTitle } from "./App.styled.tsx";
 import "./poppins.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RecipeForm } from "./components/RecipeForm";
 
 function App() {
-  const [activeRecipe, setActiveRecipe] = useState(null);
-  const recipe: Recipe = {
-    title: "Food",
-    ingredients: [
-      {
-        id: 1,
-        amount: 4,
-        unit: "each",
-        name: "egg",
-        isAllergen: true,
-      },
-      {
-        id: 2,
-        amount: 0.5,
-        unit: "kg",
-        name: "flour",
-        isAllergen: false,
-      },
-    ],
-    allergens: [],
-    cookingSteps: [
-      { id: 1, step: "preheat" },
-      { id: 2, step: "stir" },
-      { id: 3, step: "fry" },
-    ],
-    photoURL: "https://picsum.photos/600/900",
-  };
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [activeRecipe, setActiveRecipe] = useState<Recipe | null>(null);
+  const [isEditModeOn, setIsEditModeOn] = useState<boolean>(true);
 
   const isViewportSmallerThanMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  useEffect(() => {
+    const storedRecipes = JSON.parse(
+      localStorage.getItem("savedRecipes") || "[]",
+    );
+    setRecipes(storedRecipes);
+  }, []);
+
+  const handleSaveRecipe = (newRecipe: Recipe) => {
+    const updatedRecipes = [...recipes, newRecipe];
+    setRecipes(updatedRecipes);
+    localStorage.setItem("savedRecipes", JSON.stringify(updatedRecipes));
+    alert("Recipe saved!");
+    console.log(updatedRecipes);
+  };
+
+  const deleteRecipe = (title: string) => {
+    const updatedRecipes = recipes.filter((recipe) => recipe.title !== title);
+    setRecipes(updatedRecipes);
+    localStorage.setItem("savedRecipes", JSON.stringify(updatedRecipes));
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -46,12 +43,34 @@ function App() {
       </StyledTitle>
       {isViewportSmallerThanMd ? (
         <StyledAppContainer>
-          {activeRecipe ? <RecipeCard recipe={recipe} /> : <RecipeForm />}
+          {!isEditModeOn ? (
+            <RecipeCard recipe={activeRecipe} />
+          ) : (
+            <RecipeForm
+              onSaveRecipe={handleSaveRecipe}
+              recipes={recipes}
+              isEditModeOn={isEditModeOn}
+              recipe={activeRecipe}
+            />
+          )}
         </StyledAppContainer>
       ) : (
         <StyledAppContainer>
-          {activeRecipe ? <RecipeCard recipe={recipe} /> : <RecipeForm />}
-          <RecipesBar />
+          {!isEditModeOn ? (
+            <RecipeCard recipe={activeRecipe} />
+          ) : (
+            <RecipeForm
+              onSaveRecipe={handleSaveRecipe}
+              recipes={recipes}
+              isEditModeOn={isEditModeOn}
+              activeRecipe={activeRecipe}
+            />
+          )}
+          <RecipesBar
+            recipes={recipes}
+            setActiveRecipe={setActiveRecipe}
+            deleteRecipe={deleteRecipe}
+          />
         </StyledAppContainer>
       )}
     </ThemeProvider>

@@ -46,22 +46,6 @@ export const useRecipeForm = (recipe) => {
     setCookingSteps(updatedSteps);
   };
 
-  const handleSaveRecipe = () => {
-    const recipeToSave = {
-      title: recipeTitle,
-      ingredients,
-      cookingSteps,
-      photoURL: photoURL,
-    };
-
-    const savedRecipes = JSON.parse(
-      localStorage.getItem("savedRecipes") || "[]",
-    );
-    const updatedRecipes = [...savedRecipes, recipeToSave];
-    localStorage.setItem("savedRecipes", JSON.stringify(updatedRecipes));
-    console.log(savedRecipes);
-  };
-
   const handleChangeIngredient = (id: number, field: string, value: any) => {
     setIngredients((prev) =>
       prev.map((ingredient) =>
@@ -89,7 +73,6 @@ export const useRecipeForm = (recipe) => {
     onClickDeleteIngredient,
     onClickAddStep,
     onClickDeleteStep,
-    handleSaveRecipe,
     handleChangeIngredient,
     handleChangeStep,
   };

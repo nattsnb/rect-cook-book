@@ -5,6 +5,13 @@ import { IngredientsForm } from "./IngredientsForm.tsx";
 import { Recipe } from "../../../shared/types/Recipe.ts";
 import { useRecipeForm } from "./useRecipeForm.tsx";
 
+interface RecipeFormProps {
+  onSaveRecipe: (recipe: Recipe) => void;
+  recipes: Recipe[];
+  isEditModeOn: boolean;
+  activeRecipe: Recipe | null;
+}
+
 const emptyRecipe: Recipe = {
   title: "Empty recipe",
   ingredients: [
@@ -23,7 +30,14 @@ const emptyRecipe: Recipe = {
   photoURL: "",
 };
 
-export function RecipeForm({ recipe = emptyRecipe }: { recipe?: Recipe }) {
+export function RecipeForm({
+  onSaveRecipe,
+  recipes,
+  isEditModeOn,
+  activeRecipe,
+}: RecipeFormProps) {
+  const recipe = activeRecipe || emptyRecipe;
+
   const {
     recipeTitle,
     setRecipeTitle,
@@ -35,10 +49,18 @@ export function RecipeForm({ recipe = emptyRecipe }: { recipe?: Recipe }) {
     onClickDeleteIngredient,
     onClickAddStep,
     onClickDeleteStep,
-    handleSaveRecipe,
     handleChangeIngredient,
     handleChangeStep,
   } = useRecipeForm(recipe);
+
+  const createNewRecipe = (): Recipe => {
+    return {
+      title: recipeTitle,
+      ingredients: ingredients,
+      cookingSteps: cookingSteps,
+      photoURL: photoURL,
+    };
+  };
 
   return (
     <StyledRecipeCardContainer>
@@ -80,7 +102,16 @@ export function RecipeForm({ recipe = emptyRecipe }: { recipe?: Recipe }) {
           onChange={(event) => setPhotoURL(event.target.value)}
         />
       </div>
-      <Button onClick={handleSaveRecipe}>Save</Button>
+      <Button
+        onClick={() => {
+          const newRecipe = createNewRecipe();
+          onSaveRecipe(newRecipe);
+        }}
+        variant="contained"
+        color="primary"
+      >
+        Save
+      </Button>
     </StyledRecipeCardContainer>
   );
 }
