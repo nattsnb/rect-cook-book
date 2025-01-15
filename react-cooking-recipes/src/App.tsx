@@ -23,6 +23,17 @@ function App() {
   }, []);
 
   const handleSaveRecipe = (newRecipe: Recipe) => {
+    const isDuplicate = recipes.some(
+      (recipe) =>
+        recipe.title.trim().toLowerCase() ===
+        newRecipe.title.trim().toLowerCase(),
+    );
+    if (isDuplicate) {
+      alert(
+        "A recipe with this title already exists! Please choose a different title.",
+      );
+      return;
+    }
     const updatedRecipes = [...recipes, newRecipe];
     setRecipes(updatedRecipes);
     localStorage.setItem("savedRecipes", JSON.stringify(updatedRecipes));
@@ -34,6 +45,11 @@ function App() {
     const updatedRecipes = recipes.filter((recipe) => recipe.title !== title);
     setRecipes(updatedRecipes);
     localStorage.setItem("savedRecipes", JSON.stringify(updatedRecipes));
+  };
+
+  const deleteAllRecipes = () => {
+    localStorage.removeItem("savedRecipes");
+    setRecipes([]);
   };
 
   return (
@@ -70,6 +86,7 @@ function App() {
             recipes={recipes}
             setActiveRecipe={setActiveRecipe}
             deleteRecipe={deleteRecipe}
+            deleteAllRecipes={deleteAllRecipes}
           />
         </StyledAppContainer>
       )}
