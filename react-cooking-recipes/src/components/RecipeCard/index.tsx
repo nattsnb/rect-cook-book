@@ -1,5 +1,6 @@
 import { Recipe } from "../../../shared/types/Recipe.ts";
 import {
+  Button,
   List,
   ListItem,
   ListItemButton,
@@ -16,13 +17,15 @@ import {
   StyledIngredientsContainer,
   StyledIngredientUnitDiv,
   StyledRecipeCardContainer,
+  StyledTitleEditButtonContainer,
 } from "./RecipeCard.styled.tsx";
 
 interface RecipeCardProps {
   recipe: Recipe;
+  setIsEditModeOn: (isOn: boolean) => void;
 }
 
-export function RecipeCard({ recipe }: RecipeCardProps) {
+export function RecipeCard({ recipe, setIsEditModeOn }: RecipeCardProps) {
   const arrayOfAllergens = recipe.ingredients
     .filter((ingredient) => ingredient.isAllergen)
     .map((ingredient) => ingredient.name);
@@ -32,7 +35,12 @@ export function RecipeCard({ recipe }: RecipeCardProps) {
         imageUrl={recipe.photoURL || "https://picsum.photos/900/600"}
       />
       <StyledInfoContainer>
-        <Typography variant="recipeTittle">{recipe.title}</Typography>
+        <StyledTitleEditButtonContainer>
+          <Typography variant="recipeTittle">{recipe.title}</Typography>
+          <Button variant="contained" onClick={() => setIsEditModeOn(true)}>
+            Edit
+          </Button>
+        </StyledTitleEditButtonContainer>
         <Typography variant="allergens">{arrayOfAllergens}</Typography>
         <div>
           <StyledIngredientsContainer>

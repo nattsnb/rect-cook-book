@@ -63,3 +63,8 @@ export const StyledIngredientsContainer = styled("div")`
   margin-top: ${({ theme }) => theme.spacing(2)};
   background-color: ${({ theme }) => theme.palette.secondary.lightest};
 `;
+
+export const StyledTitleEditButtonContainer = styled("div")`
+  display: flex;
+  flex-direction: row;
+`;

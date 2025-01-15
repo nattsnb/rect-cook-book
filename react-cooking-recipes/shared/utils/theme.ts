@@ -49,6 +49,7 @@ const theme = createTheme({
       },
     },
     recipeTittle: {
+      marginRight: "14px",
       fontSize: "32px",
       lineHeight: 1.5,
       fontWeight: 600,

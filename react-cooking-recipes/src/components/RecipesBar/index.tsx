@@ -13,18 +13,21 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { Recipe } from "../../../shared/types/Recipe.ts";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import theme from "../../../shared/utils/theme.ts";
+import CloseIcon from "@mui/icons-material/Close";
 
 interface RecipesBarProps {
-  onSaveRecipe: (recipe: Recipe) => void;
   recipes: Recipe[];
-  isEditModeOn: boolean;
-  activeRecipe: Recipe | null;
+  handleSetActiveRecipe: (Recipe) => void;
+  deleteRecipe: (string) => void;
   deleteAllRecipes: () => void;
   handleAddNewRecipe: () => void;
+  toggleFiltersDrawer?: (isOpen: boolean) => void;
 }
 
 export function RecipesBar({
@@ -33,17 +36,28 @@ export function RecipesBar({
   deleteRecipe,
   deleteAllRecipes,
   handleAddNewRecipe,
+  toggleFiltersDrawer,
 }: RecipesBarProps) {
+  const isViewportSmallerThanMd = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <StyledRecipesBarContainer>
       <StyledRecipesBarTittle>
-        <Typography variant="recipesBarTittle">My recipes</Typography>
+        {isViewportSmallerThanMd ? (
+          <div>
+            <Typography variant="recipesBarTittle">My recipes</Typography>
+            <IconButton onClick={toggleFiltersDrawer(false)}>
+              <CloseIcon />
+            </IconButton>
+          </div>
+        ) : (
+          <Typography variant="recipesBarTittle">My recipes</Typography>
+        )}
       </StyledRecipesBarTittle>
       <Divider />
       <StyledListContainer>
         <List>
           <StyledButtonContainer>
-            {" "}
             <Button variant="contained" onClick={handleAddNewRecipe}>
               <AddIcon />
               Add recipe

@@ -11,5 +11,9 @@ export const StyledTitle = styled("div")`
   width: 100%;
   display: flex;
   justify-content: center;
-\`
+`;
+
+export const StyledMyRecipesButtonContainer = styled("div")`
+  display: flex;
+  justify-content: end;
 `;
