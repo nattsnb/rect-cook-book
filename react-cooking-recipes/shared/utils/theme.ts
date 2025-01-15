@@ -9,6 +9,7 @@ const theme = createTheme({
       contrastText: "#ffffff",
     },
     secondary: {
+      lightest: "#f5ece1",
       light: "#e7d9c4",
       main: "#d4c4a8",
       dark: "#b9a688",
@@ -41,6 +42,8 @@ const theme = createTheme({
       fontWeight: 600,
       fontFamily: `"Poppins", sans-serif`,
       color: "#2c1b14",
+      marginTop: "10px",
+      marginBottom: "8px",
       "@media (max-width: 768px)": {
         fontSize: "16px",
       },
@@ -96,7 +99,6 @@ const theme = createTheme({
       },
     },
     formSection: {
-      marginTop: "30px",
       fontSize: "20px",
       lineHeight: "30px",
       fontWeight: 600,
@@ -135,23 +137,33 @@ const theme = createTheme({
     MuiDivider: {
       variants: [
         {
-          props: { variant: "customDashed" }, // Wariant z przerywaną linią
+          props: { variant: "custom" },
           style: {
-            borderColor: "#8f5a3c", // Czekoladowy kolor
+            borderColor: "#8f5a3c",
             borderWidth: "1px",
             borderStyle: "solid",
             marginBottom: "16px",
           },
         },
-        {
-          props: { variant: "customThick" }, // Wariant z grubą linią
-          style: {
-            borderColor: "#2c1b14", // Bardzo ciemny czekoladowy kolor
-            borderWidth: "4px",
-            borderStyle: "solid",
+      ],
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            backgroundColor: "#f5ece1", // Set background color
+            "&.Mui-disabled": {
+              backgroundColor: "#e7d9c4", // Lighter background for disabled
+            },
+            "& fieldset": {
+              borderColor: "#d4c4a8", // Border color for normal state
+            },
+            "&.Mui-focused fieldset": {
+              borderColor: "#4b2e1c", // Border color when focused
+            },
           },
         },
-      ],
+      },
     },
   },
 });

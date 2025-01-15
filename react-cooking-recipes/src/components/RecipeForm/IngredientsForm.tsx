@@ -1,6 +1,14 @@
 import { Button, IconButton, MenuItem, TextField } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Ingredient } from "../../../shared/types/Ingredient.ts";
+import {
+  StyledBigTextField,
+  StyledFormSectionButton,
+  StyledMediumTextField,
+  StyledRowOfTextFields,
+  StyledSmallTextField,
+  StyledSplitIntoRowsContainer,
+} from "./RecipesForm.styled.tsx";
 
 interface IngredientsFormProps {
   ingredients: Array<Ingredient>;
@@ -20,84 +28,88 @@ export function IngredientsForm({
   return (
     <div>
       {ingredients.map((ingredient) => (
-        <div key={ingredient.id}>
-          <TextField id="id" value={ingredient.id} disabled />
-          <TextField
-            id="amount"
-            label="amount"
-            value={ingredient.amount || ""}
-            placeholder="Amount..."
-            type="number"
-            onChange={(e) =>
-              onChangeIngredient(
-                ingredient.id,
-                "amount",
-                Number(e.target.value),
-              )
-            }
-          />
-          <TextField
-            select
-            id="unit"
-            label="unit"
-            value={ingredient.unit}
-            placeholder="Choose..."
-            onChange={(e) =>
-              onChangeIngredient(ingredient.id, "unit", e.target.value)
-            }
-          >
-            {unitsArray.map((unit) => (
-              <MenuItem key={unit} value={unit}>
-                {unit}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
+        <StyledSplitIntoRowsContainer key={ingredient.id}>
+          <div>
+            <StyledSmallTextField id="id" value={ingredient.id} disabled />
+            <StyledSmallTextField
+              id="amount"
+              value={ingredient.amount || ""}
+              placeholder="amount..."
+              type="number"
+              onChange={(e) =>
+                onChangeIngredient(
+                  ingredient.id,
+                  "amount",
+                  Number(e.target.value),
+                )
+              }
+            />
+            <StyledSmallTextField
+              select
+              id="unit"
+              value={ingredient.unit}
+              label="unit"
+              onChange={(e) =>
+                onChangeIngredient(ingredient.id, "unit", e.target.value)
+              }
+            >
+              {unitsArray.map((unit) => (
+                <MenuItem key={unit} value={unit}>
+                  {unit}
+                </MenuItem>
+              ))}
+            </StyledSmallTextField>
+          </div>
+          <StyledBigTextField
             id="name"
-            label="name"
             value={ingredient.name}
-            placeholder="Name..."
+            placeholder="name"
             onChange={(e) =>
               onChangeIngredient(ingredient.id, "name", e.target.value)
             }
           />
-          <TextField
-            select
-            id="isAllergen"
-            label="is allergen?"
-            value={
-              ingredient.isAllergen !== null
-                ? ingredient.isAllergen.toString()
-                : ""
-            }
-            onChange={(e) =>
-              onChangeIngredient(
-                ingredient.id,
-                "isAllergen",
-                e.target.value === "true"
-                  ? true
-                  : e.target.value === "false"
-                    ? false
-                    : null,
-              )
-            }
-          >
-            <MenuItem value="">Select an option</MenuItem>
-            <MenuItem key={"yes"} value={"true"}>
-              Yes
-            </MenuItem>
-            <MenuItem key={"no"} value={"false"}>
-              No
-            </MenuItem>
-          </TextField>
-          <IconButton onClick={() => onClickDeleteIngredient(ingredient.id)}>
-            <DeleteOutlineIcon />
-          </IconButton>
-        </div>
+          <StyledRowOfTextFields>
+            <StyledMediumTextField
+              select
+              id="isAllergen"
+              label="Is allergen?"
+              value={
+                ingredient.isAllergen !== null
+                  ? ingredient.isAllergen.toString()
+                  : ""
+              }
+              onChange={(e) =>
+                onChangeIngredient(
+                  ingredient.id,
+                  "isAllergen",
+                  e.target.value === "true"
+                    ? true
+                    : e.target.value === "false"
+                      ? false
+                      : null,
+                )
+              }
+            >
+              <MenuItem value="">Select an option</MenuItem>
+              <MenuItem key={"yes"} value={"true"}>
+                Yes
+              </MenuItem>
+              <MenuItem key={"no"} value={"false"}>
+                No
+              </MenuItem>
+            </StyledMediumTextField>
+            <IconButton onClick={() => onClickDeleteIngredient(ingredient.id)}>
+              <DeleteOutlineIcon />
+            </IconButton>
+          </StyledRowOfTextFields>
+        </StyledSplitIntoRowsContainer>
       ))}
-      <Button variant="outlined" onClick={onClickAddIngredient}>
+      <StyledFormSectionButton
+        variant="contained"
+        onClick={onClickAddIngredient}
+      >
         Add ingredient
-      </Button>
+      </StyledFormSectionButton>
     </div>
   );
 }

@@ -14,3 +14,18 @@ export const StyledRecipesBarTittle = styled("div")`
   display: flex;
   justify-content: center;
 `;
+
+export const StyledButtonContainer = styled("div")`
+  display: flex;
+  justify-content: center;
+`;
+
+export const StyledListContainer = styled("div")`
+  display: flex;
+  flex-direction: column;
+  padding: ${({ theme }) => theme.spacing(2)} ${({ theme }) => theme.spacing(1)};
+
+  ${({ theme }) => theme.breakpoints.down("lg")} {
+    padding: ${({ theme }) => theme.spacing(2)} 0;
+  }
+`;

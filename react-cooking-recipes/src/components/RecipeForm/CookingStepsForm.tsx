@@ -1,6 +1,13 @@
 import { Button, IconButton, TextField } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { Step } from "../../../shared/types/step.ts";
+import {
+  StyledFormSectionButton,
+  StyledMaxTextField,
+  StyledMediumTextField,
+  StyledSmallTextField,
+  StyledStepFormContainer,
+} from "./RecipesForm.styled.tsx";
 
 interface CookingStepsFormProps {
   cookingSteps: Array<Step>;
@@ -18,9 +25,9 @@ export function CookingStepsForm({
   return (
     <div>
       {cookingSteps.map((step) => (
-        <div key={step.id}>
-          <TextField id="id" value={step.id} disabled />
-          <TextField
+        <StyledStepFormContainer key={step.id}>
+          <StyledSmallTextField id="id" value={step.id} disabled />
+          <StyledMaxTextField
             id="step"
             value={step.step}
             placeholder="Step..."
@@ -29,11 +36,11 @@ export function CookingStepsForm({
           <IconButton onClick={() => onClickDeleteStep(step.id)}>
             <DeleteOutlineIcon />
           </IconButton>
-        </div>
+        </StyledStepFormContainer>
       ))}
-      <Button variant="outlined" onClick={onClickAddStep}>
+      <StyledFormSectionButton variant="contained" onClick={onClickAddStep}>
         Add another step
-      </Button>
+      </StyledFormSectionButton>
     </div>
   );
 }

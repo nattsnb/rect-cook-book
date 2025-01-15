@@ -57,8 +57,9 @@ export const StyledIngredientsContainer = styled("div")`
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  border-radius: ${({ theme }) => theme.spacing(5)};
+  border-radius: ${({ theme }) => theme.spacing(3)};
   border: solid 2px ${({ theme }) => theme.palette.secondary.dark};
   padding: ${({ theme }) => theme.spacing(1)} ${({ theme }) => theme.spacing(3)};
   margin-top: ${({ theme }) => theme.spacing(2)};
+  background-color: ${({ theme }) => theme.palette.secondary.lightest};
 `;
