@@ -1,7 +1,7 @@
 export interface Ingredient {
   id: number;
-  amount: number;
+  amount: number | null;
   unit: string;
   name: string;
-  isAllergen: boolean;
+  isAllergen: boolean | null;
 }

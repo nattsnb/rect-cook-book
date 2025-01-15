@@ -6,7 +6,7 @@ import { RecipesBar } from "./components/RecipesBar";
 import { StyledAppContainer, StyledTitle } from "./App.styled.tsx";
 import "./poppins.css";
 import { useState } from "react";
-import { NewRecipeForm } from "./components/NewRecipeForm";
+import { RecipeForm } from "./components/RecipeForm";
 
 function App() {
   const [activeRecipe, setActiveRecipe] = useState(null);
@@ -37,10 +37,6 @@ function App() {
     photoURL: "https://picsum.photos/600/900",
   };
 
-  recipe.allergens = recipe.ingredients
-    .filter((ingredient) => ingredient.isAllergen)
-    .map((ingredient) => ingredient.name);
-
   const isViewportSmallerThanMd = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
@@ -50,11 +46,11 @@ function App() {
       </StyledTitle>
       {isViewportSmallerThanMd ? (
         <StyledAppContainer>
-          {activeRecipe ? <RecipeCard recipe={recipe} /> : <NewRecipeForm />}
+          {activeRecipe ? <RecipeCard recipe={recipe} /> : <RecipeForm />}
         </StyledAppContainer>
       ) : (
         <StyledAppContainer>
-          {activeRecipe ? <RecipeCard recipe={recipe} /> : <NewRecipeForm />}
+          {activeRecipe ? <RecipeCard recipe={recipe} /> : <RecipeForm />}
           <RecipesBar />
         </StyledAppContainer>
       )}

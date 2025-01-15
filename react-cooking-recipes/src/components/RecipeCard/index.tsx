@@ -18,14 +18,15 @@ interface RecipeCardProps {
 }
 
 export function RecipeCard({ recipe }: RecipeCardProps) {
+  const arrayOfAllergens = recipe.ingredients
+    .filter((ingredient) => ingredient.isAllergen)
+    .map((ingredient) => ingredient.name);
   return (
     <StyledRecipeCardContainer>
       <StyledImageContainer />
       <StyledInfoContainer>
         <Typography variant="recipeTittle">{recipe.title}</Typography>
-        <Typography variant="allergens">
-          allergens: {recipe.allergens}
-        </Typography>
+        <Typography variant="allergens">{arrayOfAllergens}</Typography>
         <div>
           <List>
             {recipe.cookingSteps.map((value, index) => (
