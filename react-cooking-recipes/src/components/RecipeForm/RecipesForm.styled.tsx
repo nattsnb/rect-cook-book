@@ -61,7 +61,8 @@ export const StyledSplitIntoRowsContainer = styled("div")`
   width: 100%;
   display: flex;
   flex-direction: row;
-
+  margin-bottom: ${({ theme }) => theme.spacing(1)};
+  
   ${({ theme }) => theme.breakpoints.down("lg")} {
     flex-direction: column;
   }
