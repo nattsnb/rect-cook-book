@@ -1,6 +1,6 @@
-import { Recipe } from "../shared/types/Recipe.ts";
+import { Recipe } from "./shared/types/Recipe.ts";
 import { RecipeCard } from "./components/RecipeCard";
-import theme from "../shared/utils/theme.ts";
+import theme from "./shared/utils/theme.ts";
 import {
   Button,
   Drawer,

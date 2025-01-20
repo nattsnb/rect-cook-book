@@ -2,7 +2,7 @@ import { StyledRecipeCardContainer } from "../RecipeCard/RecipeCard.styled.tsx";
 import { Button, Divider, TextField, Typography } from "@mui/material";
 import { CookingStepsForm } from "./CookingStepsForm.tsx";
 import { IngredientsForm } from "./IngredientsForm.tsx";
-import { Recipe } from "../../../shared/types/Recipe.ts";
+import { Recipe } from "../../shared/types/Recipe.ts";
 import { useRecipeForm } from "./useRecipeForm.tsx";
 import {
   StyledButtonContainer,

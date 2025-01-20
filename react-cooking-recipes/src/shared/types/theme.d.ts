@@ -1,7 +1,7 @@
 import '@mui/material/styles';
 import '@mui/material/Typography';
-import { ColorPartial } from '@mui/material/styles/createPalette';
-// TODO check if this file can be shared between apps
+import {PropTypes} from "@mui/material";
+import Color = PropTypes.Color;
 
 type ColorPartial = Partial<Color>;
 
@@ -20,8 +20,15 @@ declare module '@mui/material/styles/createTypography' {
 // Update the Typography's variant prop options
 declare module '@mui/material/Typography' {
     interface TypographyPropsVariantOverrides {
-        subtitle3: true;
-        label: true;
+        pageTittle: true;
+        recipesBarTittle: true;
+        recipeTittle: true;
+        ingredientsTittle: true;
+        allergens: true;
+        recipeSteps: true;
+        stepsCounter: true;
+        formSection: true;
+        formErrorMessage: true;
     }
 }
 

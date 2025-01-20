@@ -16,9 +16,9 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { Recipe } from "../../../shared/types/Recipe.ts";
+import { Recipe } from "../../shared/types/Recipe.ts";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import theme from "../../../shared/utils/theme.ts";
+import theme from "../../shared/utils/theme.ts";
 import CloseIcon from "@mui/icons-material/Close";
 
 interface RecipesBarProps {

@@ -1,4 +1,4 @@
-import { Recipe } from "../../../shared/types/Recipe.ts";
+import { Recipe } from "../../shared/types/Recipe.ts";
 import {
   Button,
   List,
