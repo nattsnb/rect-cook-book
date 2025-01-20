@@ -11,7 +11,6 @@ import {
 import {
   StyledImageContainer,
   StyledInfoContainer,
-  StyledIngredientCell,
   StyledIngredientIndexDiv,
   StyledIngredientRow,
   StyledIngredientsContainer,
